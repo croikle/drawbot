@@ -19,5 +19,5 @@ Run on SVG, prints sequence of points x1,y1 x2,y2 ...
 New line for each path.
 
 convert_to_radial.pl:
-Takes output from svg_path_extract, converts to the radial coordinate frame.
+Takes output from svg_path_extract, converts to the radial coordinate frame.  Also truncates to integers.
 Constants: width of svg, scaling factor.
