@@ -15,10 +15,12 @@ int comma_index = 0;
 int next_a, next_b;
 int a_speed;
 int b_speed;
+int last_a, last_b = 700;
 
 void setup(void) {
 	Serial.begin(9600);
-	Serial.println(" library test");
+	Serial.println("Drawbot Serial Interface");
+	Serial.println("input coords as INT,INT<SPACE>");
 
 	stepA.setMaxSpeed(MAX_SPEED);
 	stepA.setAcceleration(MAX_ACCEL);
@@ -77,11 +79,12 @@ void loop(void) {
 		next_a = atoi(buffer); 
 		next_b = atoi( buffer+comma_index+1 );
 
-		Serial.print("next_a: ");
-		Serial.println(next_a);
-		Serial.print("next_b: ");
+		Serial.print("next position:  ");
+		Serial.print(next_a);
+		Serial.print(", ");
 		Serial.println(next_b);
-		matchedMove( next_a, next_b );
+		matchedMove( next_a - last_a, next_b - last_b );
+		last_a = next_a;
+		last_b = next_b;
 		}
-	//if(stepA.distanceToGo() == 0) speedTest();
 }
