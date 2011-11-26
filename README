@@ -3,6 +3,16 @@ Initial stuff for Nick's drawbot project.
 Inkscape should be set to not use relative coordinates (Uncheck Preferences > SVG output > Allow relative coordinates).
 
 Currently using 1000 as the width of the SVG, assuming pulleys at top corners. (set in Document Properties, 1000px width)
+
+Inkscape process:
+* Draw with pen
+* Path edit mode (F2)
+* Select all nodes
+* Subdivide (+ button) until happy
+* Convert segments to lines
+
+There's an extension (Extensions > Modify Path > Add Nodes...) which could be used for smarter subdivision. Needs lxml library.
+
 SVG coordinate scheme runs from top left corner:
 0,0 ------------------ 1000,0
 |                           |
@@ -21,3 +31,6 @@ New line for each path.
 convert_to_radial.pl:
 Takes output from svg_path_extract, converts to the radial coordinate frame.  Also truncates to integers.
 Constants: width of svg, scaling factor.
+
+Usage: ./svg_path_extract.pl example1.svg |./convert_to_radial.pl
+(these tools could probably be merged)
