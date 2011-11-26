@@ -1,0 +1,20 @@
+Initial stuff for Nick's drawbot project.
+
+Inkscape should be set to not use relative coordinates (Uncheck Preferences > SVG output > Allow relative coordinates).
+
+Currently using 1000 as the width of the SVG, assuming pulleys at top corners. (set in Document Properties, 1000px width)
+SVG coordinate scheme runs from top left corner:
+0,0 ------------------ 1000,0
+|                           |
+|                           |
+|                           |
+|                           |
+|                           |
+|                           |
+|                           |
+0,1000 ------------ 1000,1000
+
+svg_path_extract.pl:
+Run on SVG, prints sequence of points x1,y1 x2,y2 ...
+
+convert_to_radial.pl:
