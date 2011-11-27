@@ -2,14 +2,19 @@
 
 import serial
 import sys
+import time
 
 s = serial.Serial("/dev/ttyACM0")
 inputread = sys.stdin.read()
 positions = inputread.split()
 
-while True:
+time.sleep(1)
+
+while len(positions) >= 1:
 	foo = positions.pop(0) + " "
 	s.write(foo)
-	print foo
-	s.read(1)
+	print "foo: \"" + foo + "\""
+	s.read()
+	print "dot read"
 
+print "All Done"

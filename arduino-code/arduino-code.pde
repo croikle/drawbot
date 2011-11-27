@@ -57,6 +57,7 @@ void loop(void) {
 	stepB.runSpeedToPosition();
 	if( stepA.distanceToGo() == 0 &&
 		 stepB.distanceToGo() == 0) {
+		Serial.print(".");
 		stepA.disableOutputs();
 		stepB.disableOutputs();
 		while(Serial.available() <= 0) {}
@@ -90,7 +91,7 @@ void loop(void) {
 		/* Serial.print(", "); */
 		/* Serial.println(next_b); */
 
-		Serial.print(".");
+		//Serial.print(".");
 		/* Only printing a single character to acknowledge */
 
 		if(!read_initial_position) {
