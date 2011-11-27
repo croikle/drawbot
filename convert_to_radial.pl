@@ -7,14 +7,14 @@ $pixelwidth = 1000;
 #diameter of pulleys, in mm
 $diameter = 10;
 #distance between pulleys, in mm
-$distance = 1000;
+$distance = 840;
 #steps/rev
 $ticks = 200;
 
 #distance moved by one revolution = $diameter*pi
 #this is $ticks steps
 #so steps/distance is $ticks/($diameter*pi)
-#multiply this by distance
+#multiply this by distanc
 $steps_between_pulleys = $ticks*$distance/($diameter*3.14);
 #global multiplicative scaling factor
 $scale = $steps_between_pulleys/$pixelwidth;
