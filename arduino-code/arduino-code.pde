@@ -61,6 +61,9 @@ void loop(void) {
 		stepB.disableOutputs();
 		while(Serial.available() <= 0) {}
 		/* wait for more data */
+		stepA.enableOutputs();
+		stepB.enableOutputs();
+
 		bufsize = 0;
 		lastread = '0';
 		while( lastread!=' ' && lastread!='\n' ) {
