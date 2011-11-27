@@ -79,10 +79,13 @@ void loop(void) {
 		next_a = atoi(buffer); 
 		next_b = atoi( buffer+comma_index+1 );
 
-		Serial.print("next position:  ");
-		Serial.print(next_a);
-		Serial.print(", ");
-		Serial.println(next_b);
+		/* Serial.print("next position:  "); */
+		/* Serial.print(next_a); */
+		/* Serial.print(", "); */
+		/* Serial.println(next_b); */
+
+		Serial.print(".");
+		/* Only printing a single character to acknowledge */
 
 		if(!read_initial_position) {
 			read_initial_position = 1;
