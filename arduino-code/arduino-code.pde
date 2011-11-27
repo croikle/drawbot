@@ -21,8 +21,8 @@ int read_initial_position = 0;
 
 void setup(void) {
 	Serial.begin(9600);
-	Serial.println("Drawbot Serial Interface");
-	Serial.println("input coords as INT,INT<SPACE>");
+//	Serial.println("Drawbot Serial Interface");
+//	Serial.println("input coords as INT,INT<SPACE>");
 
 	stepA.setMaxSpeed(MAX_SPEED);
 	stepA.setAcceleration(MAX_ACCEL);
