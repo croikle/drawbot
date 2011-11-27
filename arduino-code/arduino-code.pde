@@ -59,7 +59,7 @@ void loop(void) {
 		 stepB.distanceToGo() == 0) {
 		stepA.disableOutputs();
 		stepB.disableOutputs();
-		while(Serial.available() <= 0) {}
+		while(!Serial.available()) {}
 		/* wait for more data */
 		stepA.enableOutputs();
 		stepB.enableOutputs();
