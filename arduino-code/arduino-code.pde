@@ -56,8 +56,11 @@ void loop(void) {
 	stepA.runSpeedToPosition();
 	stepB.runSpeedToPosition();
 	if( stepA.distanceToGo() == 0 &&
-		 stepB.distanceToGo() == 0 &&
-		 Serial.available() > 0){
+		 stepB.distanceToGo() == 0) {
+		stepA.disableOutputs();
+		stepB.disableOutputs();
+		while(Serial.available() <= 0) {}
+		/* wait for more data */
 		bufsize = 0;
 		lastread = '0';
 		while( lastread!=' ' && lastread!='\n' ) {
