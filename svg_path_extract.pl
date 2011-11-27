@@ -5,7 +5,7 @@
 # Relative positions not handled.
 # Behavior on more complex files is undefined.
 
-$regex = '^\s*d="M (.*)"$';
+$regex = '^\s*d="M (.*?)( z)?"$';
 
 while(<>) {
 	print "$1\n" if /$regex/;
