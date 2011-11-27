@@ -32,13 +32,9 @@ void setup(void) {
 }
 
 void matchedMove( int a_steps, int b_steps ){
-	if( abs(a_steps) >= abs(b_steps) ) {
-		b_speed = ( float(b_steps) / abs(a_steps) ) * MAX_SPEED ;
-		a_speed = ( a_steps / abs(a_steps) ) * MAX_SPEED;
-	} else {
-		a_speed = ( float(a_steps) / abs(b_steps) ) * MAX_SPEED ;
-		b_speed = ( b_steps / abs(b_steps) ) * MAX_SPEED;
-	}
+	int largest_dimension = abs(a_steps) > abs(b_steps) ? abs(a_steps) : abs(b_steps);
+	a_speed = ( float(a_steps) / largest_dimension ) * MAX_SPEED;
+	b_speed = ( float(b_steps) / largest_dimension ) * MAX_SPEED;
 
 	stepA.setSpeed( a_speed );
 	stepB.setSpeed( b_speed );
