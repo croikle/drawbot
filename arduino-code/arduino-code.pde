@@ -17,6 +17,7 @@ int a_speed;
 int b_speed;
 int last_a = 700;
 int last_b = 700;
+int read_initial_position = 0;
 
 void setup(void) {
 	Serial.begin(9600);
@@ -82,7 +83,14 @@ void loop(void) {
 		Serial.print(next_a);
 		Serial.print(", ");
 		Serial.println(next_b);
-		matchedMove( next_a - last_a, next_b - last_b );
+
+		if(!read_initial_position) {
+			read_initial_position = 1;
+			/* Don't move for the first point */
+		} else {
+			matchedMove( next_a - last_a, next_b - last_b );
+		}
+
 		last_a = next_a;
 		last_b = next_b;
 		}
