@@ -58,12 +58,14 @@ void loop(void) {
 	if( stepA.distanceToGo() == 0 &&
 		 stepB.distanceToGo() == 0) {
 		Serial.print(".");
-		stepA.disableOutputs();
-		stepB.disableOutputs();
-		while(!Serial.available()) {}
-		/* wait for more data */
-		stepA.enableOutputs();
-		stepB.enableOutputs();
+		if(!Serial.available()) {
+			stepA.disableOutputs();
+			stepB.disableOutputs();
+			while(!Serial.available()) {}
+			/* wait for more data */
+			stepA.enableOutputs();
+			stepB.enableOutputs();
+		}
 
 		bufsize = 0;
 		lastread = '0';
