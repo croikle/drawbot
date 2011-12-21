@@ -21,18 +21,17 @@ int last_a = 0;
 int last_b = 0;
 int read_initial_position = 0;
 
-void setup(void) {
-	Serial.begin(9600);
-//	Serial.println("Drawbot Serial Interface");
-//	Serial.println("input coords as INT,INT<SPACE>");
+void matchedMove( int a_pos, int b_pos ){
+	int a_steps = a_pos - stepA.currentPosition();
+	int b_steps = b_pos - stepB.currentPosition();
+	int largest_dimension = abs(a_steps) > abs(b_steps) ? abs(a_steps) : abs(b_steps);
+	a_speed = ( float(a_steps) / largest_dimension ) * MAX_SPEED;
+	b_speed = ( float(b_steps) / largest_dimension ) * MAX_SPEED;
 
-	pinMode(LIMIT_A_PIN, INPUT);
-	pinMode(LIMIT_B_PIN, INPUT);
-	stepA.setMaxSpeed(MAX_SPEED);
-	stepA.setAcceleration(MAX_ACCEL);
-	stepB.setMaxSpeed(MAX_SPEED);
-	stepB.setAcceleration(MAX_ACCEL);
-	calibrate();
+	stepA.setSpeed( a_speed );
+	stepB.setSpeed( b_speed );
+	stepA.move( a_steps );
+	stepB.move( b_steps );
 }
 
 /* Preconditions:
@@ -47,15 +46,14 @@ void setup(void) {
  * 
  */
 void calibrate(){
-	stepA.setSpeed(-150);
-	stepB.setSpeed(300);
+	stepA.setSpeed(-300);
 	while( digitalRead(LIMIT_A_PIN) == LOW ) {
 		stepA.runSpeed();
 		stepB.runSpeed();
 	}
 	stepA.setCurrentPosition( 50 );
 	stepA.setSpeed(300);
-	stepB.setSpeed(-150);
+	stepB.setSpeed(-300);
 	while( digitalRead(LIMIT_B_PIN) == LOW ) {
 		stepA.runSpeed();
 		stepB.runSpeed();
@@ -68,19 +66,20 @@ void calibrate(){
 }
 
 
-void matchedMove( int a_steps, int b_steps ){
-	int largest_dimension = abs(a_steps) > abs(b_steps) ? abs(a_steps) : abs(b_steps);
-	a_speed = ( float(a_steps) / largest_dimension ) * MAX_SPEED;
-	b_speed = ( float(b_steps) / largest_dimension ) * MAX_SPEED;
+void setup(void) {
+	Serial.begin(9600);
+//	Serial.println("Drawbot Serial Interface");
+//	Serial.println("input coords as INT,INT<SPACE>");
 
-	stepA.setSpeed( a_speed );
-	stepB.setSpeed( b_speed );
-	stepA.move( a_steps );
-	stepB.move( b_steps );
-	stepA.runSpeedToPosition();
-	stepB.runSpeedToPosition();
+	pinMode(LIMIT_A_PIN, INPUT);
+	pinMode(LIMIT_B_PIN, INPUT);
+	stepA.setMaxSpeed(MAX_SPEED);
+	stepA.setAcceleration(MAX_ACCEL);
+	stepB.setMaxSpeed(MAX_SPEED);
+	stepB.setAcceleration(MAX_ACCEL);
+	calibrate();
+	matchedMove(3000, 3000);
 }
-
 void loop(void) {
 	if( digitalRead(LIMIT_A_PIN) == LOW && digitalRead(LIMIT_B_PIN) == LOW ){
 		stepA.runSpeedToPosition();
@@ -133,6 +132,6 @@ void loop(void) {
 		//Serial.print(".");
 		/* Only printing a single character to acknowledge */
 
-		matchedMove( next_a - stepA.currentPosition(), next_b - stepB.currentPosition() );
+		matchedMove( next_a, next_b );
 		}
 }
