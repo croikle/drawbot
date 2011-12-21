@@ -35,6 +35,17 @@ void setup(void) {
 	calibrate();
 }
 
+/* Preconditions:
+ * B is fully extended, and both maximal lengths are greater than the distance
+ * between pulleys.
+ *
+ * Protocol:
+ * 1. Retracts A until limit switch triggers.
+ * 2. Extends A and retracts B until B limit triggers.
+ *    Now we know positions, though A line is slack.
+ * 3. Run to a good start.
+ * 
+ */
 void calibrate(){
 	stepA.setSpeed(-150);
 	stepB.setSpeed(300);
