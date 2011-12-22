@@ -10,3 +10,9 @@
 1 ft = 1768 steps
 
 distance between corners is 2 foot 11 in = 35 in = 5145 steps
+
+A minimum distance = 10.5 in (corner to pen)
+B = 11 in
+11 inches = 1617 steps
+
+when sensors triggered, set to position 1600.
