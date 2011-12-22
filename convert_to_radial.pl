@@ -15,7 +15,8 @@ $ticks = 200;
 #this is $ticks steps
 #so steps/distance is $ticks/($diameter*pi)
 #multiply this by distanc
-$steps_between_pulleys = $distance*$ticks/($diameter*3.14);
+#$steps_between_pulleys = $distance*$ticks/($diameter*3.14);
+$steps_between_pulleys = 5145;
 #global multiplicative scaling factor
 $scale = $steps_between_pulleys/$pixelwidth;
 
