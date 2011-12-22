@@ -1,0 +1,10 @@
+2950 steps is about 1 foot 8 inches = 508 mm
+	B was 1 foot 7, A was 1 foot 9
+	then in another run B was 1 foot 8
+
+1 step = 508/2950 mm = 0.172 mm = 6.78 milli-inches
+1000 steps = 172 mm = 6.78 inches
+1 mm = 2950/508 steps = 5.8 steps
+1 m = 5800 steps
+1 in = 147 steps
+1 ft = 1768 steps
