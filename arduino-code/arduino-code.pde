@@ -2,11 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-const int MAX_SPEED = 100;
+const int MAX_SPEED = 300;
 const int MAX_ACCEL = 1000;
 const int LIMIT_A_PIN = 6;
 const int LIMIT_B_PIN = 7;
 const int ZERO_POS = 1600;
+const int WRITE_SPEED = 100;
 
 AccelStepper stepA;
 AccelStepper stepB(4, 8,9,10,11);
@@ -26,8 +27,8 @@ void matchedMove( int a_pos, int b_pos ){
 	int a_steps = a_pos - stepA.currentPosition();
 	int b_steps = b_pos - stepB.currentPosition();
 	int largest_dimension = abs(a_steps) > abs(b_steps) ? abs(a_steps) : abs(b_steps);
-	a_speed = ( float(a_steps) / largest_dimension ) * MAX_SPEED;
-	b_speed = ( float(b_steps) / largest_dimension ) * MAX_SPEED;
+	a_speed = ( (float) a_steps / largest_dimension ) * WRITE_SPEED;
+	b_speed = ( (float) b_steps / largest_dimension ) * WRITE_SPEED;
 
 	stepA.setSpeed( a_speed );
 	stepB.setSpeed( b_speed );
