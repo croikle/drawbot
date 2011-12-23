@@ -2,10 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-const int MAX_SPEED = 300;
+const int MAX_SPEED = 100;
 const int MAX_ACCEL = 1000;
 const int LIMIT_A_PIN = 6;
 const int LIMIT_B_PIN = 7;
+const int ZERO_POS = 1600;
 
 AccelStepper stepA;
 AccelStepper stepB(4, 8,9,10,11);
@@ -15,11 +16,11 @@ char lastread;
 int bufsize = 0;
 int comma_index = 0;
 int next_a, next_b;
-int a_speed;
-int b_speed;
 int last_a = 0;
 int last_b = 0;
 int read_initial_position = 0;
+float a_speed;
+float b_speed;
 
 void matchedMove( int a_pos, int b_pos ){
 	int a_steps = a_pos - stepA.currentPosition();
@@ -37,7 +38,7 @@ void matchedMove( int a_pos, int b_pos ){
 /* Preconditions:
  * B is fully extended, and both maximal lengths are greater than the distance
  * between pulleys.
- *
+ 
  * Protocol:
  * 1. Retracts A until limit switch triggers.
  * 2. Extends A and retracts B until B limit triggers.
@@ -51,18 +52,19 @@ void calibrate(){
 		stepA.runSpeed();
 		stepB.runSpeed();
 	}
-	stepA.setCurrentPosition( 50 );
+	stepA.setCurrentPosition( ZERO_POS );
 	stepA.setSpeed(300);
 	stepB.setSpeed(-300);
 	while( digitalRead(LIMIT_B_PIN) == LOW ) {
 		stepA.runSpeed();
 		stepB.runSpeed();
 	}
-	stepB.setCurrentPosition( 50 );
-	stepB.setSpeed(50);
-	while(digitalRead(LIMIT_B_PIN) == HIGH ) {
-		stepB.runSpeed();
-	}
+	stepB.setCurrentPosition( ZERO_POS );
+	matchedMove(3000, 3000);
+   while( stepA.distanceToGo() != 0 && stepB.distanceToGo() != 0 ) {
+		stepA.runSpeedToPosition();
+		stepB.runSpeedToPosition();
+   }
 }
 
 
@@ -78,7 +80,6 @@ void setup(void) {
 	stepB.setMaxSpeed(MAX_SPEED);
 	stepB.setAcceleration(MAX_ACCEL);
 	calibrate();
-	matchedMove(3000, 3000);
 }
 void loop(void) {
 	if( digitalRead(LIMIT_A_PIN) == LOW && digitalRead(LIMIT_B_PIN) == LOW ){
