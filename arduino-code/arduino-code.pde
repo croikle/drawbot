@@ -30,10 +30,10 @@ void matchedMove( int a_pos, int b_pos ){
 	a_speed = ( (float) a_steps / largest_dimension ) * WRITE_SPEED;
 	b_speed = ( (float) b_steps / largest_dimension ) * WRITE_SPEED;
 
-	stepA.setSpeed( a_speed );
-	stepB.setSpeed( b_speed );
 	stepA.move( a_steps );
 	stepB.move( b_steps );
+	stepA.setSpeed( a_speed );
+	stepB.setSpeed( b_speed );
 }
 
 /* Preconditions:
@@ -84,8 +84,8 @@ void setup(void) {
 }
 void loop(void) {
 	if( digitalRead(LIMIT_A_PIN) == LOW && digitalRead(LIMIT_B_PIN) == LOW ){
-		stepA.runSpeedToPosition();
-		stepB.runSpeedToPosition();
+		stepA.runSpeed();
+		stepB.runSpeed();
 	}
 	if( stepA.distanceToGo() == 0 &&
 		 stepB.distanceToGo() == 0) {
