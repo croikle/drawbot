@@ -9,6 +9,10 @@ const int LIMIT_B_PIN = 7;
 const int ZERO_POS = 1600;
 const int WRITE_SPEED = 100;
 
+const int PEN_1 = 12;
+const int PEN_2 = 13;
+const int PEN_ENABLE = 1;
+
 AccelStepper stepA;
 AccelStepper stepB(4, 8,9,10,11);
 
@@ -78,6 +82,9 @@ void setup(void) {
 
 	pinMode(LIMIT_A_PIN, INPUT);
 	pinMode(LIMIT_B_PIN, INPUT);
+	pinMode(PEN_1, OUTPUT);
+	pinMode(PEN_2, OUTPUT);
+	pinMode(PEN_ENABLE, OUTPUT);
 	stepA.setMaxSpeed(MAX_SPEED);
 	stepA.setAcceleration(MAX_ACCEL);
 	stepB.setMaxSpeed(MAX_SPEED);
