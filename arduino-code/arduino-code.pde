@@ -11,8 +11,8 @@ const int WRITE_SPEED = 100;
 const int PEN_DELAY_MS = 200;
 
 const int PEN_1 = 12;
-const int PEN_2 = 13;
-const int PEN_ENABLE = 1;
+const int PEN_2 = 1;
+const int PEN_ENABLE = 13;
 
 AccelStepper stepA;
 AccelStepper stepB(4, 8,9,10,11);
