@@ -137,3 +137,13 @@ void loop(void) {
 		matchedMove( next_a, next_b );
 		}
 }
+
+void penUp() {
+	/* placeholder */
+	return 0;
+}
+
+void penDown() {
+	/* placeholder */
+	return 0;
+}
