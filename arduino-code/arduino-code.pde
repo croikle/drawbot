@@ -167,7 +167,6 @@ void penUp() {
 	digitalWrite(PEN_ENABLE, LOW);
 
 	pen_up = true;
-	return 0;
 }
 
 void penDown() {
@@ -178,5 +177,4 @@ void penDown() {
 	digitalWrite(PEN_ENABLE, LOW);
 
 	pen_up = false;
-	return 0;
 }
