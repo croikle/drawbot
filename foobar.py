@@ -10,8 +10,8 @@ inputread = sys.stdin.read()
 time.sleep(1)
 
 for n in inputread:
-	s.write(n)
-   if (n == '\n' or n == ' '):
+   s.write(n)
+   if n == '\n' or n == ' ':
       s.read()
       print "dot read"
 
