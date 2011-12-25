@@ -94,8 +94,8 @@ void setup(void) {
 }
 void loop(void) {
 	if( digitalRead(LIMIT_A_PIN) == LOW && digitalRead(LIMIT_B_PIN) == LOW ){
-		stepA.runSpeed();
-		stepB.runSpeed();
+		stepA.runSpeedToPosition();
+		stepB.runSpeedToPosition();
 	}
 	if( stepA.distanceToGo() == 0 &&
 		 stepB.distanceToGo() == 0) {
