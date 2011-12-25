@@ -22,6 +22,7 @@ int last_b = 0;
 int read_initial_position = 0;
 float a_speed;
 float b_speed;
+bool pen_up;
 
 void matchedMove( int a_pos, int b_pos ){
 	int a_steps = a_pos - stepA.currentPosition();
@@ -48,6 +49,7 @@ void matchedMove( int a_pos, int b_pos ){
  * 
  */
 void calibrate(){
+	penUp();
 	stepA.setSpeed(-300);
 	while( digitalRead(LIMIT_A_PIN) == LOW ) {
 		stepA.runSpeed();
@@ -140,10 +142,12 @@ void loop(void) {
 
 void penUp() {
 	/* placeholder */
+	pen_up = true;
 	return 0;
 }
 
 void penDown() {
 	/* placeholder */
+	pen_up = false;
 	return 0;
 }
