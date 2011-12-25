@@ -102,6 +102,7 @@ void loop(void) {
 		}
 
 		/* moving to a new segment */
+		/* note: using lastread from the previous cycle */
 		if( lastread == '\n' ) {
 			penUp();
 		}
