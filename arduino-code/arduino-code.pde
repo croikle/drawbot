@@ -101,6 +101,15 @@ void loop(void) {
 			stepB.enableOutputs();
 		}
 
+		/* moving to a new segment */
+		if( lastread == '\n' ) {
+			penUp();
+		}
+		/* put the pen down if starting new segment */
+		if( (lastread == ' ') && pen_up ) {
+			penDown();
+		}
+
 		bufsize = 0;
 		lastread = '0';
 		while( lastread!=' ' && lastread!='\n' ) {
@@ -125,6 +134,7 @@ void loop(void) {
 				/* wait for more data */
 			}
 		}
+
 		next_a = atoi(buffer); 
 		next_b = atoi( buffer+comma_index+1 );
 
