@@ -18,7 +18,7 @@ AccelStepper stepA;
 AccelStepper stepB(4, 8,9,10,11);
 
 char buffer[256];
-char lastread;
+char lastread = '0';
 int bufsize = 0;
 int comma_index = 0;
 int next_a, next_b;
