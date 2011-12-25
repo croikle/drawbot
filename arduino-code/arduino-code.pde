@@ -8,6 +8,7 @@ const int LIMIT_A_PIN = 6;
 const int LIMIT_B_PIN = 7;
 const int ZERO_POS = 1600;
 const int WRITE_SPEED = 100;
+const int PEN_DELAY_MS = 200;
 
 const int PEN_1 = 12;
 const int PEN_2 = 13;
@@ -159,13 +160,23 @@ void loop(void) {
 }
 
 void penUp() {
-	/* placeholder */
+	digitalWrite(PEN_1, LOW);
+	digitalWrite(PEN_2, HIGH);
+	digitalWrite(PEN_ENABLE, HIGH);
+	delay(PEN_DELAY_MS);
+	digitalWrite(PEN_ENABLE, LOW);
+
 	pen_up = true;
 	return 0;
 }
 
 void penDown() {
-	/* placeholder */
+	digitalWrite(PEN_1, HIGH);
+	digitalWrite(PEN_2, LOW);
+	digitalWrite(PEN_ENABLE, HIGH);
+	delay(PEN_DELAY_MS);
+	digitalWrite(PEN_ENABLE, LOW);
+
 	pen_up = false;
 	return 0;
 }
