@@ -1,5 +1,9 @@
 Initial stuff for Nick's drawbot project.
 
+Requires the AccelStepper library available here: http://www.open.com.au/mikem/arduino/AccelStepper/AccelStepper-1.9.zip
+
+Arduino master Makefile available here: http://mjo.tc/atelier/2009/02/arduino-cli.html
+
 Inkscape should be set to not use relative coordinates (Uncheck Preferences > SVG output > Allow relative coordinates).
 
 Currently using 1000 as the width of the SVG, assuming pulleys at top corners. (set in Document Properties, 1000px width)
