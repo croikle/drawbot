@@ -11,8 +11,8 @@ time.sleep(1)
 
 for n in inputread:
    s.write(n)
+   print( n, end=="")
    if n == '\n' or n == ' ':
       s.read()
-      print "dot read"
 
 print "All Done"
