@@ -1,4 +1,4 @@
-#include "AccelStepper.cpp"
+#include <AccelStepper.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -28,6 +28,26 @@ int read_initial_position = 0;
 float a_speed;
 float b_speed;
 bool pen_up;
+
+void penUp() {
+	digitalWrite(PEN_1, LOW);
+	digitalWrite(PEN_2, HIGH);
+	digitalWrite(PEN_ENABLE, HIGH);
+	delay(PEN_DELAY_MS);
+	digitalWrite(PEN_ENABLE, LOW);
+
+	pen_up = true;
+}
+
+void penDown() {
+	digitalWrite(PEN_1, HIGH);
+	digitalWrite(PEN_2, LOW);
+	digitalWrite(PEN_ENABLE, HIGH);
+	delay(PEN_DELAY_MS);
+	digitalWrite(PEN_ENABLE, LOW);
+
+	pen_up = false;
+}
 
 void matchedMove( int a_pos, int b_pos ){
 	int a_steps = a_pos - stepA.currentPosition();
@@ -157,24 +177,4 @@ void loop(void) {
 
 		matchedMove( next_a, next_b );
 		}
-}
-
-void penUp() {
-	digitalWrite(PEN_1, LOW);
-	digitalWrite(PEN_2, HIGH);
-	digitalWrite(PEN_ENABLE, HIGH);
-	delay(PEN_DELAY_MS);
-	digitalWrite(PEN_ENABLE, LOW);
-
-	pen_up = true;
-}
-
-void penDown() {
-	digitalWrite(PEN_1, HIGH);
-	digitalWrite(PEN_2, LOW);
-	digitalWrite(PEN_ENABLE, HIGH);
-	delay(PEN_DELAY_MS);
-	digitalWrite(PEN_ENABLE, LOW);
-
-	pen_up = false;
 }
