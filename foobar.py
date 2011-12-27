@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 
+from __future__ import print_function
 import serial
 import sys
 import time
@@ -11,8 +12,8 @@ time.sleep(1)
 
 for n in inputread:
    s.write(n)
-   print( n, end=="")
+   print( n, end="")
    if n == '\n' or n == ' ':
       s.read()
 
-print "All Done"
+print("All Done")
