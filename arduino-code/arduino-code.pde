@@ -8,10 +8,10 @@ const int LIMIT_A_PIN = 6;
 const int LIMIT_B_PIN = 7;
 const int ZERO_POS = 1600;
 const int WRITE_SPEED = 100;
-const int PEN_DELAY_MS = 200;
+const int PEN_DELAY_MS = 1000;
 
 const int PEN_1 = 12;
-const int PEN_2 = 1;
+const int PEN_2 = 14;
 const int PEN_ENABLE = 13;
 
 AccelStepper stepA;
