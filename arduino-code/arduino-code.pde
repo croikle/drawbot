@@ -4,8 +4,8 @@
 
 const int MAX_SPEED = 300;
 const int MAX_ACCEL = 1000;
-const int LIMIT_A_PIN = 6;
-const int LIMIT_B_PIN = 7;
+const int LIMIT_A_PIN = 7;
+const int LIMIT_B_PIN = 6;
 const int ZERO_POS = 1600;
 const int WRITE_SPEED = 100;
 const int PEN_DELAY_MS = 1000;
